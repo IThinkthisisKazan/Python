@@ -58,10 +58,13 @@ def main():
                 if not os.path.exists('upload/' + subdir):
                     os.mkdir('upload/' + subdir)
                 image_url = str(image['src'])
+                print(image_url)
                 if (image_url.endswith(".jpg") and image_url.startswith("https://")):
-                    img_data = requests.get(image_url).content
-                    with open('upload/' + subdir + '/' + name_auto, 'wb') as handler:
-                        handler.write(img_data)
+                    print(image_url)
+                    image_url = requests.get(image_url).content
+
+                with open('upload/' + subdir + '/' + name_auto, 'wb') as handler:
+                    handler.write(image_url)
             except IndexError:
                 continue
 
@@ -77,7 +80,7 @@ def main():
         count += 1
 
     print()
-    '''
+
     n = int(len(auto)) - 1
     count = 0
     while count <= 4:  # count <= n
@@ -90,7 +93,7 @@ def main():
             filehadle.writelines(links for links in data)
         print(price, title, body)
         count += 1
-    '''
+
 
 
 if __name__ == '__main__':
